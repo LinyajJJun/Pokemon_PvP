@@ -1,0 +1,335 @@
+[
+    {
+        "name": "Normal",
+        "counter": [
+            ""
+        ],
+        "weakness": [
+            "Fighting"
+        ],
+        "resistance": [
+            "Ghost"
+        ]
+    },
+    {
+        "name": "Fighting",
+        "counter": [
+            "Dark",
+            "Ice",
+            "Rock",
+            "Steel",
+            "Normal"
+        ],
+        "weakness": [
+            "Flying",
+            "Psychic",
+            "Fairy"
+        ],
+        "resistance": [
+            "Rock",
+            "Dark",
+            "Bug"
+        ]
+    },
+    {
+        "name": "Flying",
+        "counter": [
+            "Grass",
+            "Fighting",
+            "Bug"
+        ],
+        "weakness": [
+            "Electric",
+            "Ice",
+            "Rock"
+        ],
+        "resistance": [
+            "Ground",
+            "Fighting",
+            "Grass",
+            "Bug"
+        ]
+    },
+    {
+        "name": "Poison",
+        "counter": [
+            "Grass",
+            "Fairy"
+        ],
+        "weakness": [
+            "Ground",
+            "Psychic"
+        ],
+        "resistance": [
+            "Steel",
+            "Fairy",
+            "Fighting",
+            "Grass",
+            "Bug"
+        ]
+    },
+    {
+        "name": "Ground",
+        "counter": [
+            "Fire",
+            "Electric",
+            "Poison",
+            "Rock",
+            "Steel"
+        ],
+        "weakness": [
+            "Water",
+            "Grass",
+            "Ice"
+        ],
+        "resistance": [
+            "Electric",
+            "Rock",
+            "Poison"
+        ]
+    },
+    {
+        "name": "Rock",
+        "counter": [
+            "Fire",
+            "Ice",
+            "Bug",
+            "Flying"
+        ],
+        "weakness": [
+            "Water",
+            "Grass",
+            "Fighting",
+            "Ground",
+            "Steel"
+        ],
+        "resistance": [
+            "Normal",
+            "Fire",
+            "Poison",
+            "Flying"
+        ]
+    },
+    {
+        "name": "Bug",
+        "counter": [
+            "Psychic",
+            "Grass",
+            "Dark"
+        ],
+        "weakness": [
+            "Fire",
+            "Flying",
+            "Rock"
+        ],
+        "resistance": [
+            "Ground",
+            "Fighting",
+            "Grass"
+        ]
+    },
+    {
+        "name": "Ghost",
+        "counter": [
+            "Ghost",
+            "Psychic"
+        ],
+        "weakness": [
+            "Ghost",
+            "Dark"
+        ],
+        "resistance": [
+            "Normal",
+            "Fighting",
+            "Bug",
+            "Poison"
+        ]
+    },
+    {
+        "name": "Steel",
+        "counter": [
+            "Fairy",
+            "Rock",
+            "Ice"
+        ],
+        "weakness": [
+            "Fire",
+            "Flying",
+            "Rock"
+        ],
+        "resistance": [
+            "Poison",
+            "Normal",
+            "Ice",
+            "Fairy",
+            "Rock",
+            "Flying",
+            "Grass",
+            "Psychic",
+            "Steel",
+            "Dragon",
+            "Bug"
+        ]
+    },
+    {
+        "name": "Fire",
+        "counter": [
+            "Bug",
+            "Grass",
+            "Ice",
+            "Steel"
+        ],
+        "weakness": [
+            "Water",
+            "Ground",
+            "Rock"
+        ],
+        "resistance": [
+            "Fire",
+            "Ice",
+            "Fairy",
+            "Grass",
+            "Steel",
+            "Bug"
+        ]
+    },
+    {
+        "name": "Water",
+        "counter": [
+            "Fire",
+            "Ground",
+            "Rock"
+        ],
+        "weakness": [
+            "Electric",
+            "Grass"
+        ],
+        "resistance": [
+            "Water",
+            "Fire",
+            "Ice",
+            "Steel"
+        ]
+    },
+    {
+        "name": "Grass",
+        "counter": [
+            "Water",
+            "Rock",
+            "Ground"
+        ],
+        "weakness": [
+            "Water",
+            "Ground",
+            "Grass",
+            "Electric"
+        ],
+        "resistance": [
+            "Water",
+            "Ground",
+            "Grass",
+            "Electric"
+        ]
+    },
+    {
+        "name": "Electric",
+        "counter": [
+            "Flying",
+            "Water"
+        ],
+        "weakness": [
+            "Ground"
+        ],
+        "resistance": [
+            "Flying",
+            "Electric",
+            "Steel"
+        ]
+    },
+    {
+        "name": "Psychic",
+        "counter": [
+            "Fighting",
+            "Poison"
+        ],
+        "weakness": [
+            "Bug",
+            "Ghost",
+            "Dark"
+        ],
+        "resistance": [
+            "Fighting",
+            "Psychic"
+        ]
+    },
+    {
+        "name": "Ice",
+        "counter": [
+            "Dragon",
+            "Flying",
+            "Grass",
+            "Ground"
+        ],
+        "weakness": [
+            "Fire",
+            "Fighting",
+            "Rock",
+            "Steel"
+        ],
+        "resistance": [
+            "Ice"
+        ]
+    },
+    {
+        "name": "Dragon",
+        "counter": [
+            "Dragon"
+        ],
+        "weakness": [
+            "Ice",
+            "Dragon",
+            "Fairy"
+        ],
+        "resistance": [
+            "Water",
+            "Fire",
+            "Grass",
+            "Electric"
+        ]
+    },
+    {
+        "name": "Dark",
+        "counter": [
+            "Ghost",
+            "Psychic"
+        ],
+        "weakness": [
+            "Fighting",
+            "Bug",
+            "Fairy"
+        ],
+        "resistance": [
+            "Psychic",
+            "Ghost",
+            "Dark"
+        ]
+    },
+    {
+        "name": "Fairy",
+        "counter": [
+            "Dark",
+            "Dragon",
+            "Fighting"
+        ],
+        "weakness": [
+            "Poison",
+            "Steel"
+        ],
+        "resistance": [
+            "Dragon",
+            "Fighting",
+            "Dark",
+            "Bug"
+        ]
+    }
+]
