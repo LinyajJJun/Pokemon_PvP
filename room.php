@@ -8,6 +8,7 @@ $userID = $_SESSION["id"];
 // echo $userID;
 $roomID = $_SESSION["roomID"];
 
+
 ?>
 
 <head>
@@ -167,16 +168,17 @@ $roomID = $_SESSION["roomID"];
             <div class="player-info"></div>
             <img src="" alt="Player 2">
         </div>
-        <div class="status-text">未準備</div>
+        <div class="status-text" id="status-text">未準備</div>
         <button id="player1start">開始</button>
         <button id="player2ready">準備</button>
         <button id="player2cancelready">取消準備</button>
-        <button id="showButtons">顯示隱藏buttons</button>
+        <!-- <button id="showButtons">顯示隱藏buttons</button> -->
     </div>
     <script>
         // 你的圖片文件
         const images = ['background/picture1.jpg', 'background/picture2.jpg', 'background/picture3.jpg', 'background/picture4.jpg'];
-
+        var interval = null;
+        let userID = "<?php echo $userID; ?>";
         // 隨機選擇圖片
         function getRandomImage() {
             return images[Math.floor(Math.random() * images.length)];
@@ -195,8 +197,8 @@ $roomID = $_SESSION["roomID"];
         }
 
         // 設定兩個玩家的信息
-        setPlayerInfo(1, document.getElementById('player1'));
-        setPlayerInfo(2, document.getElementById('player2'));
+        // setPlayerInfo(1, document.getElementById('player1'));
+        // setPlayerInfo(2, document.getElementById('player2'));
 
         // 開始遊戲的函數
         function startGame() {
@@ -215,63 +217,217 @@ $roomID = $_SESSION["roomID"];
             alert('取消准备！');
             // 在這裡可以添加進一步的取消准备相關邏輯
         }
-        document.getElementById('showButtons').addEventListener('click', function () {
-            document.getElementById('player1start').style.display = 'inline-block';
+
+        function showPrepareButton() {
             document.getElementById('player2ready').style.display = 'inline-block';
+        }
+        function hidePrepareButton() {
+            document.getElementById('player2ready').style.display = 'none';
+        }
+        function showCancelPrepareButton() {
             document.getElementById('player2cancelready').style.display = 'inline-block';
-        });
-    </script>
-    <script>
-        var interval = null;
-        /*
-        [
-            "roomID" => $roomID,
-            "player1ID" => $player1ID,
-            "player2ID" => $player2ID,
-            "player1Name" => $player1Name,
-            "player2Name" => $player2Name,
-            "player1Status" => $player1Status,
-            "player2Status" => $player2Status
-        ];  
-        */
-        function getPlayerInfo() {
-            // room.php 會回傳一個 JSON 格式的字串
-            // 裡面包含了兩個玩家的狀態
-            // GET 參數為 room_id
-            console.log("getPlayerInfo");
+        }
+        function hideCancelPrepareButton() {
+            document.getElementById('player2cancelready').style.display = 'none';
+        }
+        function showStartButton() {
+            document.getElementById('player1start').style.display = 'inline-block';
+        }
+        function hideStartButton() {
+            document.getElementById('player1start').style.display = 'none';
+        }
+        function resetPlayerRoom(){
             $.ajax({
-                url: "get_room_player_info.php",
+                url: "room_event.php",
                 type: "GET",
                 data: {
+                    operator: "ResetPlayerRoom",
+                    userID: userID
+                },
+                success: function (response) {
+                    alert("房間不存在");
+                    window.location.href = "lobby.php";
+                    interval = clearInterval(interval);
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
+        function checkRoomExist(){
+            $.ajax({
+                url: "room_event.php",
+                type: "GET",
+                data: {
+                    operator: "CheckRoom",
+                    roomID: "<?php echo $roomID; ?>"
+                },
+                success: function (response) {
+                    console.log(response);
+                    if(response == 0){
+                        alert("房間不存在");
+                        resetPlayerRoom();
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
+        function checkPlayer2Status(){
+            $.ajax({
+                url: "room_event.php",
+                type: "GET",
+                data: {
+                    operator: "GetPlayerInfo",
                     roomID: "<?php echo $roomID; ?>"
                 },
                 success: function (response) {
                     console.log(response);
                     // 將 JSON 格式的字串轉換成 JavaScript 的物件
                     const playerInfo = JSON.parse(response);
+                    if(playerInfo.length == 0){
+                        resetPlayerRoom();
+                        return;
+                    }
                     console.log(playerInfo);
-                    // // 更新玩家1的狀態
-                    // document.getElementById('player1').querySelector('.status-text').textContent = playerInfo.player1Status;
-                    // // 更新玩家2的狀態
-                    // document.getElementById('player2').querySelector('.status-text').textContent = playerInfo.player2Status;
-                    // // 如果兩個玩家都準備好了，就開始遊戲
-                    // if (playerInfo.player1Status === '準備好了' && playerInfo.player2Status === '準備好了') {
-                    //     startGame();
-                    // }
+                    if(playerInfo.player2Status == 1){
+                        showStartButton();
+                        $("#status-text").text("準備完成");
+                    }
+                    else if(playerInfo.player2Status == 0){
+                        hideStartButton();
+                        $("#status-text").text("未準備");
+                    }
                 },
                 error: function (xhr) {
                     console.log(xhr);
                 }
-            
-
             });
         }
 
-        // 一秒執行一次
-        interval = setInterval(function () {
-            getPlayerInfo();
-        }, 1000);
+
+        function getPlayerInfo() {
+            // room.php 會回傳一個 JSON 格式的字串
+            // 裡面包含了兩個玩家的狀態
+            // GET 參數為 room_id
+            $.ajax({
+                url: "room_event.php",
+                type: "GET",
+                data: {
+                    operator: "GetPlayerInfo",
+                    roomID: "<?php echo $roomID; ?>"
+                },
+                success: function (response) {
+                    // 將 JSON 格式的字串轉換成 JavaScript 的物件
+                    const playerInfo = JSON.parse(response);
+                    console.log(playerInfo);
+                    //檢查 playerInfo 長度
+                    if(playerInfo.length == 0){
+                        console.log("playerInfo == []");
+                        interval = clearInterval(interval);
+                        alert("房間不存在");
+                        resetPlayerRoom();
+                        window.location.href = "lobby.php";
+                        return;
+                    }
+                    if(playerInfo.player2Name != null){
+                        setPlayerInfo(playerInfo.player2Name, document.getElementById('player2'));
+                        interval = clearInterval(interval);
+                        if(userID == playerInfo.player2ID){
+                            showPrepareButton();
+                            interval = setInterval(function () {
+                                checkRoomExist();
+                            }, 1000);
+                        }
+                        if(userID == playerInfo.player1ID){
+                            interval = setInterval(function () {
+                                checkPlayer2Status();
+                            }, 1000);
+                        }
+                    }
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
+    
+        function init(){
+            console.log("init");
+            $.ajax({
+                url: "room_event.php",
+                type: "GET",
+                data: {
+                    operator: "GetPlayerInfo",
+                    roomID: "<?php echo $roomID; ?>"
+                },
+                success: function (response) {
+                    console.log(response);
+                    // 將 JSON 格式的字串轉換成 JavaScript 的物件
+                    const playerInfo = JSON.parse(response);
+                    if(playerInfo == []){
+                        console.log("playerInfo == []");
+                        return;
+                    }
+                    setPlayerInfo(playerInfo.player1Name, document.getElementById('player1'));
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                    
+                }
+            });
+            interval = setInterval(function () {
+                getPlayerInfo();
+            }, 1000);   
+            // event listener for player2cancelready
+            $("#player2cancelready").click(function(){
+                showPrepareButton();
+                $.ajax({
+                    url: "room_event.php",
+                    type: "GET",
+                    data: {
+                        operator: "UpdatePlayer2Status",
+                        roomID: "<?php echo $roomID; ?>",
+                        value: 0
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+                hideCancelPrepareButton();
+                $("#status-text").text("未準備");
+            });
+            // event listener for player2ready
+            $("#player2ready").click(function(){
+                hidePrepareButton();
+                $.ajax({
+                    url: "room_event.php",
+                    type: "GET",
+                    data: {
+                        operator: "UpdatePlayer2Status",
+                        roomID: "<?php echo $roomID; ?>",
+                        value: 1
+                    },
+                    success: function (response) {
+                        console.log(response);
+                    },
+                    error: function (xhr) {
+                        console.log(xhr);
+                    }
+                });
+                showCancelPrepareButton();
+                $("#status-text").text("準備完成");
+            });
+        }
+
+        init();
+        
     </script>
+
 </body>
 
 </html>

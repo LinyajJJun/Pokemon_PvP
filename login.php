@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             
 
                 // Redirect to enter.php page
-                header("location: enter.php");
+                header("location: lobby.php");
             } else {
                 function_alert("帳號或密碼錯誤");
             }
@@ -51,7 +51,7 @@ $db = null;
 function function_alert($message)
 {
     // Display the alert box
-    echo "<script>alert('$message'); window.location.href='index.php';</script>";
+    echo "<script>alert('$message'); window.location.href='lobby.php';</script>";
     return false;
 }
 ?>
