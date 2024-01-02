@@ -1,52 +1,57 @@
-User
 <?php
 // Include config file
-$conn=require_once "config.php";
+$db = require_once "config.php";
 
 // Define variables and initialize with empty values
-$username=$_POST["username"];
-$password=$_POST["password"];
-//增加hash可以提高安全性
-$password_hash=password_hash($password,PASSWORD_DEFAULT);
+$username = $_POST["username"];
+$password = $_POST["password"];
+$hash=password_hash($password,PASSWORD_DEFAULT);
 // Processing form data when form is submitted
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $sql = "SELECT * FROM user WHERE username ='".$username."'";
-    $result=mysqli_query($conn,$sql);
-    //$row = mysqli_fetch_assoc($result);
-    if(mysqli_num_rows($result)==1){
-        $row = mysqli_fetch_assoc($result);
-        if($password==$row["password"]){
-        session_start();
-        // Store data in session variables
-        $_SESSION["loggedin"] = true;
-        //這些是之後可以用到的變數
-        
-        $_SESSION["id"] = $row["id"];
-        $_SESSION["username"] =  $row["username"];
-        
-        header("location:enter.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    try {
+        // Prepare SQL statement
+        $sql = "SELECT * FROM user WHERE username = :username";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->execute();
+
+        // Check if there is a matching user
+        if ($stmt->rowCount() == 1) {
+            // Fetch the row
+            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            // Verify the password using password_verify()
+            if (password_verify($row["password"],$hash)) {
+                // Start the session
+                session_start();
+                // Store data in session variables
+                $_SESSION["loggedin"] = true;
+                $_SESSION["id"] = $row["userID"];
+                $_SESSION["username"] = $row["username"];
+            
+
+                // Redirect to enter.php page
+                header("location: enter.php");
+            } else {
+                function_alert("帳號或密碼錯誤");
+            }
+        } else {
+            function_alert("帳號或密碼錯");
         }
-        else{
-            function_alert("帳號或密碼錯誤"); 
-        }
-    }else{
-            function_alert("帳號或密碼錯誤"); 
-        }
-}
-    else{
-        function_alert("Something wrong"); 
+    } catch (PDOException $e) {
+        function_alert("發生錯誤: " . $e->getMessage());
     }
+} else {
+    function_alert("發生錯誤");
+}
 
-    // Close connection
-    mysqli_close($conn);
+// Close the connection (connection is in config.php)
+$db = null;
 
-
-function function_alert($message) { 
-      
-    // Display the alert box  
-    echo "<script>alert('$message');
-     window.location.href='index.php';
-    </script>"; 
+function function_alert($message)
+{
+    // Display the alert box
+    echo "<script>alert('$message'); window.location.href='index.php';</script>";
     return false;
-} 
+}
 ?>

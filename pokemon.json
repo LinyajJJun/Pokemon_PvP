@@ -1,0 +1,634 @@
+[
+    {
+        "name": "Abra",
+        "chineseName": "凱西",
+        "hp": 25,
+        "attack": 20,
+        "defense": 15,
+        "speed": 90,
+        "types": [
+            "Psychic"
+        ],
+        "skills": [
+            35,
+            39,
+            6,
+            51
+        ]
+    },
+    {
+        "name": "Blastoise",
+        "chineseName": "水箭龜",
+        "hp": 79,
+        "attack": 83,
+        "defense": 100,
+        "speed": 78,
+        "types": [
+            "Water"
+        ],
+        "skills": [
+            9,
+            48,
+            44,
+            41
+        ]
+    },
+    {
+        "name": "Blaziken",
+        "chineseName": "火焰雞",
+        "hp": 80,
+        "attack": 120,
+        "defense": 70,
+        "speed": 80,
+        "types": [
+            "Fire",
+            "Fighting"
+        ],
+        "skills": [
+            10,
+            26,
+            13,
+            37
+        ]
+    },
+    {
+        "name": "Bulbasaur",
+        "chineseName": "妙蛙種子",
+        "hp": 45,
+        "attack": 49,
+        "defense": 49,
+        "speed": 45,
+        "types": [
+            "Grass",
+            "Poison"
+        ],
+        "skills": [
+            8,
+            32,
+            2,
+            33
+        ]
+    },
+    {
+        "name": "Charizard",
+        "chineseName": "洪銘均",
+        "hp": 78,
+        "attack": 84,
+        "defense": 78,
+        "speed": 100,
+        "types": [
+            "Fire",
+            "Flying"
+        ],
+        "skills": [
+            10,
+            15,
+            41,
+            38
+        ]
+    },
+    {
+        "name": "Charmander",
+        "chineseName": "小火龍",
+        "hp": 39,
+        "attack": 52,
+        "defense": 43,
+        "speed": 65,
+        "types": [
+            "Fire"
+        ],
+        "skills": [
+            10,
+            33,
+            0,
+            22
+        ]
+    },
+    {
+        "name": "Clefable",
+        "chineseName": "皮可西",
+        "hp": 95,
+        "attack": 70,
+        "defense": 73,
+        "speed": 60,
+        "types": [
+            "Fairy"
+        ],
+        "skills": [
+            52,
+            35,
+            39,
+            10
+        ]
+    },
+    {
+        "name": "Dragonite",
+        "chineseName": "快龍",
+        "hp": 91,
+        "attack": 134,
+        "defense": 95,
+        "speed": 80,
+        "types": [
+            "Dragon",
+            "Flying"
+        ],
+        "skills": [
+            40,
+            0,
+            19,
+            23
+        ]
+    },
+    {
+        "name": "Electivire",
+        "chineseName": "電擊魔獸",
+        "hp": 75,
+        "attack": 123,
+        "defense": 67,
+        "speed": 95,
+        "types": [
+            "Electric"
+        ],
+        "skills": [
+            19,
+            10,
+            47,
+            43
+        ]
+    },
+    {
+        "name": "Exeggutor",
+        "chineseName": "椰蛋樹",
+        "hp": 95,
+        "attack": 95,
+        "defense": 85,
+        "speed": 55,
+        "types": [
+            "Grass",
+            "Psychic"
+        ],
+        "skills": [
+            35,
+            8,
+            0,
+            32
+        ]
+    },
+    {
+        "name": "Garchomp",
+        "chineseName": "烈咬陸鯊",
+        "hp": 108,
+        "attack": 130,
+        "defense": 95,
+        "speed": 102,
+        "types": [
+            "Dragon",
+            "Ground"
+        ],
+        "skills": [
+            33,
+            40,
+            43,
+            31
+        ]
+    },
+    {
+        "name": "Gardevoir",
+        "chineseName": "蓓蓓莉雅",
+        "hp": 68,
+        "attack": 65,
+        "defense": 65,
+        "speed": 80,
+        "types": [
+            "Psychic",
+            "Fairy"
+        ],
+        "skills": [
+            35,
+            52,
+            19,
+            6
+        ]
+    },
+    {
+        "name": "Gengar",
+        "chineseName": "耿鬼",
+        "hp": 60,
+        "attack": 65,
+        "defense": 60,
+        "speed": 110,
+        "types": [
+            "Ghost",
+            "Poison"
+        ],
+        "skills": [
+            39,
+            32,
+            23,
+            30
+        ]
+    },
+    {
+        "name": "Gyarados",
+        "chineseName": "暴鯉龍",
+        "hp": 95,
+        "attack": 125,
+        "defense": 79,
+        "speed": 81,
+        "types": [
+            "Water",
+            "Flying"
+        ],
+        "skills": [
+            9,
+            0,
+            43,
+            40
+        ]
+    },
+    {
+        "name": "Hydreigon",
+        "chineseName": "三頭龍",
+        "hp": 92,
+        "attack": 105,
+        "defense": 90,
+        "speed": 98,
+        "types": [
+            "Dark",
+            "Dragon"
+        ],
+        "skills": [
+            44,
+            42,
+            33,
+            48
+        ]
+    },
+    {
+        "name": "Lucario",
+        "chineseName": "路卡利歐",
+        "hp": 70,
+        "attack": 110,
+        "defense": 70,
+        "speed": 90,
+        "types": [
+            "Fighting",
+            "Steel"
+        ],
+        "skills": [
+            27,
+            48,
+            4,
+            31
+        ]
+    },
+    {
+        "name": "Machamp",
+        "chineseName": "怪力",
+        "hp": 90,
+        "attack": 130,
+        "defense": 80,
+        "speed": 55,
+        "types": [
+            "Fighting"
+        ],
+        "skills": [
+            26,
+            31,
+            37,
+            45
+        ]
+    },
+    {
+        "name": "Magneton",
+        "chineseName": "三合一磁怪",
+        "hp": 50,
+        "attack": 60,
+        "defense": 95,
+        "speed": 70,
+        "types": [
+            "Electric",
+            "Steel"
+        ],
+        "skills": [
+            20,
+            48,
+            1,
+            35
+        ]
+    },
+    {
+        "name": "Mamoswine",
+        "chineseName": "象牙豬",
+        "hp": 110,
+        "attack": 130,
+        "defense": 80,
+        "speed": 80,
+        "types": [
+            "Ice",
+            "Ground"
+        ],
+        "skills": [
+            33,
+            24,
+            46,
+            29
+        ]
+    },
+    {
+        "name": "Marowak",
+        "chineseName": "嘎啦嘎啦",
+        "hp": 60,
+        "attack": 80,
+        "defense": 110,
+        "speed": 45,
+        "types": [
+            "Ground"
+        ],
+        "skills": [
+            34,
+            12,
+            22,
+            46
+        ]
+    },
+    {
+        "name": "Meowth",
+        "chineseName": "喵喵",
+        "hp": 40,
+        "attack": 45,
+        "defense": 35,
+        "speed": 90,
+        "types": [
+            "Normal"
+        ],
+        "skills": [
+            1,
+            53,
+            44,
+            34
+        ]
+    },
+    {
+        "name": "Metagross",
+        "chineseName": "巨金怪",
+        "hp": 80,
+        "attack": 135,
+        "defense": 130,
+        "speed": 70,
+        "types": [
+            "Steel",
+            "Psychic"
+        ],
+        "skills": [
+            49,
+            35,
+            25,
+            28
+        ]
+    },
+    {
+        "name": "Mewtwo",
+        "chineseName": "超夢",
+        "hp": 106,
+        "attack": 110,
+        "defense": 90,
+        "speed": 130,
+        "types": [
+            "Psychic"
+        ],
+        "skills": [
+            36,
+            27,
+            39,
+            24
+        ]
+    },
+    {
+        "name": "Onix",
+        "chineseName": "大岩蛇",
+        "hp": 35,
+        "attack": 45,
+        "defense": 160,
+        "speed": 70,
+        "types": [
+            "Rock",
+            "Ground"
+        ],
+        "skills": [
+            47,
+            38,
+            1,
+            34
+        ]
+    },
+    {
+        "name": "Pidgeot",
+        "chineseName": "大比鳥",
+        "hp": 83,
+        "attack": 80,
+        "defense": 75,
+        "speed": 101,
+        "types": [
+            "Normal",
+            "Flying"
+        ],
+        "skills": [
+            13,
+            50,
+            1,
+            17
+        ]
+    },
+    {
+        "name": "Pikachu",
+        "chineseName": "皮卡丘",
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "speed": 90,
+        "types": [
+            "Electric"
+        ],
+        "skills": [
+            19,
+            3,
+            47,
+            21
+        ]
+    },
+    {
+        "name": "Ponyta",
+        "chineseName": "小火馬",
+        "hp": 50,
+        "attack": 85,
+        "defense": 55,
+        "speed": 90,
+        "types": [
+            "Fire"
+        ],
+        "skills": [
+            11,
+            1,
+            47,
+            18
+        ]
+    },
+    {
+        "name": "Salamence",
+        "chineseName": "暴飛龍",
+        "hp": 95,
+        "attack": 135,
+        "defense": 80,
+        "speed": 100,
+        "types": [
+            "Dragon",
+            "Flying"
+        ],
+        "skills": [
+            40,
+            15,
+            11,
+            9
+        ]
+    },
+    {
+        "name": "Sandslash",
+        "chineseName": "穿山王",
+        "hp": 75,
+        "attack": 100,
+        "defense": 110,
+        "speed": 65,
+        "types": [
+            "Ground"
+        ],
+        "skills": [
+            34,
+            28,
+            16,
+            31
+        ]
+    },
+    {
+        "name": "Sceptile",
+        "chineseName": "蜥蜴王",
+        "hp": 70,
+        "attack": 85,
+        "defense": 65,
+        "speed": 120,
+        "types": [
+            "Grass"
+        ],
+        "skills": [
+            7,
+            41,
+            28,
+            16
+        ]
+    },
+    {
+        "name": "Scizor",
+        "chineseName": "巨鉗螳螂",
+        "hp": 70,
+        "attack": 130,
+        "defense": 100,
+        "speed": 65,
+        "types": [
+            "Bug",
+            "Steel"
+        ],
+        "skills": [
+            16,
+            46,
+            26,
+            14
+        ]
+    },
+    {
+        "name": "Snorlax",
+        "chineseName": "卡比獸",
+        "hp": 160,
+        "attack": 110,
+        "defense": 65,
+        "speed": 30,
+        "types": [
+            "Normal"
+        ],
+        "skills": [
+            2,
+            24,
+            11,
+            20
+        ]
+    },
+    {
+        "name": "Squirtle",
+        "chineseName": "傑尼龜",
+        "hp": 44,
+        "attack": 48,
+        "defense": 65,
+        "speed": 43,
+        "types": [
+            "Water"
+        ],
+        "skills": [
+            9,
+            43,
+            1,
+            25
+        ]
+    },
+    {
+        "name": "Swampert",
+        "chineseName": "巨沼怪",
+        "hp": 100,
+        "attack": 110,
+        "defense": 90,
+        "speed": 60,
+        "types": [
+            "Water",
+            "Ground"
+        ],
+        "skills": [
+            9,
+            33,
+            29,
+            23
+        ]
+    },
+    {
+        "name": "Togekiss",
+        "chineseName": "波克基斯",
+        "hp": 85,
+        "attack": 95,
+        "defense": 85,
+        "speed": 120,
+        "types": [
+            "Fairy",
+            "Flying"
+        ],
+        "skills": [
+            15,
+            51,
+            27,
+            50
+        ]
+    },
+    {
+        "name": "Weezing",
+        "chineseName": "雾玛",
+        "hp": 65,
+        "attack": 90,
+        "defense": 120,
+        "speed": 60,
+        "types": [
+            "Poison"
+        ],
+        "skills": [
+            51,
+            32,
+            20,
+            11
+        ]
+    }
+]
