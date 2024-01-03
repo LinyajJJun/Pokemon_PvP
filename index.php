@@ -23,7 +23,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             margin: 0;
             background-image: url('background/login.png'); /* 背景圖片的 URL */
             background-size: cover; /* 使背景圖片充滿整個視窗 */
-            transition: background-color 0.3s ease; /* 背景色變化的動畫效果 */
+            transition: background-color 0.3s ease; 
         }
 
         form {
