@@ -72,7 +72,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             padding: 19px;
             text-decoration: none;
         }
-        input[type="button"]:hover {
+        input[type="sumbit"]:hover,
+        input[type="button"]:hover{
             background: #2079b0;
             background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
             background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
