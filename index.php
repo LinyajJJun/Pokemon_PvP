@@ -8,6 +8,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
     exit;  //記得要跳出來，不然會重複轉址過多次
 }
 ?>
+//3
 <html>
 <head>
     <meta charset="UTF-8">
