@@ -322,8 +322,8 @@ $roomID = $_SESSION["roomID"];
                         return;
                     }
                     if(roomInfo.status == 1){
-                        // window.location.href = "game.php";
                         alert("遊戲開始");
+                        window.location.href = "choose.php";
                     }
                 },
                 error: function (xhr) {

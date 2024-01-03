@@ -100,17 +100,33 @@ if($roomID != NULL){
       window.location.href = 'logout.php';
     }
 
-function createRoomButton() {
-    window.location.href = 'lobby_event.php?operator=create';
-}
-
-function joinRoomButton() {
-    var roomID = prompt("請輸入房間號碼");
-    if (roomID) {
-        window.location.href = 'lobby_event.php?operator=join&roomID=' + roomID;
+    function createRoomButton() {
+        window.location.href = 'lobby_event.php?operator=create';
     }
-}
 
+    function joinRoomButton() {
+        var roomID = prompt("請輸入房間號碼");
+        if (roomID) {
+            window.location.href = 'lobby_event.php?operator=join&roomID=' + roomID;
+        }
+    }
+
+    function init(){
+        $.ajax({
+            url: "lobby_event.php",
+            type: "GET",
+            data: {
+                operator: "insertPlayer"
+            },
+            success: function (result) {
+                console.log(result);
+            },
+            error: function (message) {
+                console.log(message);
+            }
+        });
+    }
+    init();
   </script>
 </head>
 <body>

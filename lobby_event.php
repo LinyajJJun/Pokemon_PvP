@@ -17,6 +17,8 @@ if($operator == "create"){
     create_room($db, $userID);
 }else if($operator == "join"){
     join_room($db, $userID, $roomID);
+}else if($operator == "insertPlayer"){
+    insertPlayer($db, $userID);
 }
 function create_room($db, $userID){
     // get time stamp
@@ -97,5 +99,23 @@ function sha($str){
     return hash('sha256', $str);
 }
 
-
+function insertPlayer($db, $userID){
+    $sql = "SELECT * FROM player WHERE playerID = :userID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID);
+    $stmt->execute();
+    if($stmt->rowCount() == 1){
+        echo "player already exist";
+        return;
+    }   
+    $sql = "INSERT INTO player (playerID) VALUES (:userID)";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':userID', $userID);
+    $stmt->execute();
+    if($stmt->rowCount() == 1){
+        echo "insert player success";
+    }else{
+        echo "insert player fail";
+    }
+}
 ?>
