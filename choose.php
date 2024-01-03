@@ -79,7 +79,9 @@
                 alert("找不到符合的寶可夢資料。");
             }
             var pokemonId = imgId;
-
+            function init(){
+                
+            }
         // 將 Pokemon 的 ID 傳遞到 battle.html
             window.location.href = "battle.html?pokemonId=" + encodeURIComponent(pokemonId);
         }
