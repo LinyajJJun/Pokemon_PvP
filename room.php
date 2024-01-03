@@ -113,6 +113,17 @@ $roomID = $_SESSION["roomID"];
             transition: background-color 0.3s;
             margin: 5px;
         }
+        #playerleave {
+            /* display: none; */
+            position: absolute;
+            bottom: 230px;
+            right: 80px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
 
         button {
             background: #eb94d0;
@@ -172,12 +183,15 @@ $roomID = $_SESSION["roomID"];
         <button id="player1start">開始</button>
         <button id="player2ready">準備</button>
         <button id="player2cancelready">取消準備</button>
+        <button id="playerleave">離開</button>
+
         <!-- <button id="showButtons">顯示隱藏buttons</button> -->
     </div>
     <script>
         // 你的圖片文件
         const images = ['background/picture1.jpg', 'background/picture2.jpg', 'background/picture3.jpg', 'background/picture4.jpg'];
         var interval = null;
+        var roomStatus = null;
         let userID = "<?php echo $userID; ?>";
         // 隨機選擇圖片
         function getRandomImage() {
@@ -202,10 +216,43 @@ $roomID = $_SESSION["roomID"];
 
         // 開始遊戲的函數
         function startGame() {
-            alert('游戏开始！');
-            // 在這裡可以添加進一步的遊戲開始相關邏輯
+            console.log("startGame");
+            // alert('游戏开始！');
+            $.ajax({
+                url: "room_event.php",
+                type: "GET",
+                data: {
+                    operator: "Start",
+                    roomID: "<?php echo $roomID; ?>",
+                    value: "<?php echo $userID; ?>"
+                },
+                success: function (response) {
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            
+            })
         }
 
+        function leaveRoom(){
+            $.ajax({
+                url: "room_event.php",
+                type: "GET",
+                data: {
+                    operator: "LeaveRoom",
+                    roomID: "<?php echo $roomID; ?>",
+                    value: "<?php echo $userID; ?>"
+                },
+                success: function (response) {
+                    console.log(response);
+                    resetPlayerRoom();
+                },
+                error: function (xhr) {
+                    console.log(xhr);
+                }
+            });
+        }
         // 准备的函數
         function prepare() {
             alert('玩家准备！');
@@ -246,15 +293,16 @@ $roomID = $_SESSION["roomID"];
                 },
                 success: function (response) {
                     alert("房間不存在");
-                    window.location.href = "lobby.php";
                     interval = clearInterval(interval);
+                    interval2 = clearInterval(interval2);
+                    window.location.href = "lobby.php";
                 },
                 error: function (xhr) {
                     console.log(xhr);
                 }
             });
         }
-        function checkRoomExist(){
+        function checkRoomStatus(){
             $.ajax({
                 url: "room_event.php",
                 type: "GET",
@@ -264,9 +312,18 @@ $roomID = $_SESSION["roomID"];
                 },
                 success: function (response) {
                     console.log(response);
-                    if(response == 0){
-                        alert("房間不存在");
+                    // 將 JSON 格式的字串轉換成 JavaScript 的物件
+                    const roomInfo = JSON.parse(response);
+                    console.log(roomInfo);
+                    if(roomInfo.roomID == null){
+
                         resetPlayerRoom();
+     
+                        return;
+                    }
+                    if(roomInfo.status == 1){
+                        // window.location.href = "game.php";
+                        alert("遊戲開始");
                     }
                 },
                 error: function (xhr) {
@@ -287,10 +344,18 @@ $roomID = $_SESSION["roomID"];
                     // 將 JSON 格式的字串轉換成 JavaScript 的物件
                     const playerInfo = JSON.parse(response);
                     if(playerInfo.length == 0){
-                        resetPlayerRoom();
                         return;
                     }
                     console.log(playerInfo);
+                    if(playerInfo.player2Name == null){
+                        document.getElementById('player2').querySelector('.player-info').textContent = "Player ID:";
+                        document.getElementById('player2').querySelector('img').src = "";
+                        interval = clearInterval(interval);
+                        interval = setInterval(function () {
+                            getPlayerInfo();
+                        }, 1000);
+                        return;
+                    }
                     if(playerInfo.player2Status == 1){
                         showStartButton();
                         $("#status-text").text("準備完成");
@@ -326,7 +391,7 @@ $roomID = $_SESSION["roomID"];
                     if(playerInfo.length == 0){
                         console.log("playerInfo == []");
                         interval = clearInterval(interval);
-                        alert("房間不存在");
+                        // interval2 = clearInterval(interval2);
                         resetPlayerRoom();
                         window.location.href = "lobby.php";
                         return;
@@ -336,9 +401,6 @@ $roomID = $_SESSION["roomID"];
                         interval = clearInterval(interval);
                         if(userID == playerInfo.player2ID){
                             showPrepareButton();
-                            interval = setInterval(function () {
-                                checkRoomExist();
-                            }, 1000);
                         }
                         if(userID == playerInfo.player1ID){
                             interval = setInterval(function () {
@@ -380,6 +442,9 @@ $roomID = $_SESSION["roomID"];
             interval = setInterval(function () {
                 getPlayerInfo();
             }, 1000);   
+            interval2 = setInterval(function () {
+                checkRoomStatus();
+            }, 1000);
             // event listener for player2cancelready
             $("#player2cancelready").click(function(){
                 showPrepareButton();
@@ -426,6 +491,14 @@ $roomID = $_SESSION["roomID"];
 
         init();
         
+        // event listener for player1start
+        $("#player1start").click(function(){
+            startGame();
+        });
+        // event listener for playerleave
+        $("#playerleave").click(function(){
+            leaveRoom();
+        });
     </script>
 
 </body>

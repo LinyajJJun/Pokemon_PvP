@@ -40,10 +40,43 @@ elseif ($operator == "UpdatePlayer2Status") {
     }
 }
 elseif($operator == "CheckRoom"){
-    echo checkRoom($db, $roomID);
+    $resultJson = [];
+    if(checkRoomExist($db, $roomID)){
+        $resultJson = [
+            "roomID" => $roomID,
+            "status" => checkRoomStatus($db, $roomID)
+        ];
+    }else{
+        $resultJson = [
+            "roomID" => NULL,
+            "status" => -1
+        ];
+    }
+    echo json_encode($resultJson);
 }
 elseif($operator == "ResetPlayerRoom"){
     resetPlayerRoom($db, $userID);
+}
+elseif($operator == "Start" ){
+    // UPDATE room SET status = 1 WHERE roomID = /*roomID*/;
+    echo "Start";
+    // get player1ID
+    $sql = "SELECT * FROM room WHERE roomID = :roomID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':roomID', $roomID);
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $player1ID = $row["player1ID"];
+    echo $player1ID. " " .$v;
+    if($player1ID == $v){
+        $sql = "UPDATE room SET statu = 1 WHERE roomID = :roomID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':roomID', $roomID);
+        $stmt->execute();
+    }
+}
+elseif($operator == "LeaveRoom"){
+    playerLeaveRoom($db, $v, $roomID);
 }
 /*
 room(roomID,
@@ -114,7 +147,7 @@ function getPlayerStatus($db,$roomID){
     }
 }
 
-function checkRoom($db, $roomID){
+function checkRoomExist($db, $roomID){
     $sql = "SELECT * FROM room WHERE roomID = :roomID";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':roomID', $roomID);
@@ -125,7 +158,51 @@ function checkRoom($db, $roomID){
         return false;
     }
 }
+function checkRoomStatus($db, $roomID){
+    $sql = "SELECT * FROM room WHERE roomID = :roomID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':roomID', $roomID);
+    $stmt->execute();
+    if ($stmt->rowCount() == 1) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $statu = $row["statu"];
+        return $statu;
+    }else{
+        return -1;
+    }
+}
+
 function resetPlayerRoom($db, $userID){
     $_SESSION["roomID"] = NULL;
 }
+
+function playerLeaveRoom($db, $userID, $roomID){
+    echo "playerLeaveRoom" . $userID . " " . $roomID;
+    
+    $sql = "SELECT * FROM room WHERE roomID = :roomID";
+    $stmt = $db->prepare($sql);
+    $stmt->bindParam(':roomID', $roomID);
+
+    $stmt->execute();
+
+    if ($stmt->rowCount() == 1) {
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+        $roomID = $row["roomID"];
+        $player1ID = $row["player1ID"];
+        $player2ID = $row["player2ID"];
+
+        if($player1ID == $userID){
+            $sql = "DELETE FROM room WHERE roomID = :roomID";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':roomID', $roomID);
+            $stmt->execute();
+        } elseif ($player2ID == $userID){
+            $sql = "UPDATE room SET player2ID = NULL WHERE roomID = :roomID";
+            $stmt = $db->prepare($sql);
+            $stmt->bindParam(':roomID', $roomID);
+            $stmt->execute();
+        }
+    }
+}
+
 ?>

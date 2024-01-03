@@ -17,8 +17,6 @@ if($operator == "create"){
     create_room($db, $userID);
 }else if($operator == "join"){
     join_room($db, $userID, $roomID);
-}else if($operator == "check"){
-    echo checkRoom($db, $roomID);
 }
 function create_room($db, $userID){
     // get time stamp
