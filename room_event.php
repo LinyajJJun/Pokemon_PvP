@@ -28,7 +28,7 @@ if($operator == "GetPlayerInfo"){
 }
 elseif ($operator == "UpdatePlayer2Status") {
     // UPDATE room SET player2Status = :v WHERE roomID = :roomID;
-    $sql = "UPDATE room SET player2Status = :v WHERE roomID = :roomID";
+    $sql = "UPDATE player SET playerStatus = :v WHERE playerID = (select room.player2ID from room where roomID = :roomID)";
     $stmt = $db->prepare($sql);
     $stmt->bindParam(':v', $v); // 绑定占位符 :v 的值
     $stmt->bindParam(':roomID', $roomID);
@@ -131,7 +131,14 @@ function getPlayerName($db, $player1ID, $player2ID){
 
 function getPlayerStatus($db,$roomID){
     try {
-        $sql = "SELECT * FROM room WHERE roomID = :roomID";
+        $sql = "SELECT 
+                player1.playerStatus AS player1Status,
+                player2.playerStatus AS player2Status
+                FROM room
+                LEFT JOIN player AS player1 ON room.player1ID = player1.playerID
+                LEFT JOIN player AS player2 ON room.player2ID = player2.playerID
+                WHERE room.roomID = :roomID";
+
         $stmt = $db->prepare($sql);
         $stmt->bindParam(':roomID', $roomID);
         $stmt->execute();
@@ -147,17 +154,23 @@ function getPlayerStatus($db,$roomID){
     }
 }
 
-function checkRoomExist($db, $roomID){
-    $sql = "SELECT * FROM room WHERE roomID = :roomID";
-    $stmt = $db->prepare($sql);
-    $stmt->bindParam(':roomID', $roomID);
-    $stmt->execute();
-    if ($stmt->rowCount() == 1) {
-        return true;
-    }else{
+function checkRoomExist($db, $roomID) {
+    try {
+        $sql = "SELECT COUNT(*) as count FROM room WHERE roomID = :roomID";
+        $stmt = $db->prepare($sql);
+        $stmt->bindParam(':roomID', $roomID);
+        $stmt->execute();
+
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+       
+        return $result['count'] > 0;
+    } catch (PDOException $e) {
+       
         return false;
     }
 }
+
 function checkRoomStatus($db, $roomID){
     $sql = "SELECT * FROM room WHERE roomID = :roomID";
     $stmt = $db->prepare($sql);
