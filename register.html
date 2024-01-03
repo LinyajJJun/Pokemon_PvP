@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
     <style>
-        @import url(https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css);
         body {
             font-family: "cwTeXFangSong";
             margin: 0;
@@ -12,16 +13,12 @@
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #eff6fc; /* 设置整体背景颜色 */
-        }
-
-        h1 {
-            text-align: center;
+            background-color: #dcf4ae; /* 设置整体背景颜色 */
         }
 
         #container {
-            width: 400px;
-            height: 320px;
+            width: 500px;
+            height: 500px;
             background-color: #68acf5; /* 设置容器背景颜色 */
             padding: 20px;
             border-radius: 10px;
@@ -32,12 +29,6 @@
             width: 100%;
         }
 
-        p {
-            text-align: center;
-            font-size: 1.2em;
-            margin-bottom: 20px;
-        }
-
         #registeraccount {
             font-size: 24px;
             font-weight: bold;
@@ -45,102 +36,10 @@
             margin-bottom: 20px;
         }
 
-        #Account {
-            font-size: 18px;
-            font-weight: 500;
-            position: absolute;
-            right: 56%;
-            bottom: 55%;
-        }
-
-        #account {
-            position: absolute;
-            right: 40%;
-            bottom: 55%;
-            width: 200px;
-        }
-
-        #Password {
-            font-size: 18px;
-            font-weight: 500;
-            position: absolute;
-            right: 56%;
-            bottom: 50%;
-        }
-
-        #password {
-            position: absolute;
-            right: 40%;
-            bottom: 50%;
-            width: 200px;
-        }
-
-        #checkpassword {
-            position: absolute;
-            right: 56%;
-            bottom: 45%;
-        }
-
-        #password_check {
-            position: absolute;
-            right: 40%;
-            bottom: 45%;
-            width: 200px;
-        }
-
-        #Submit {
-            width: 50px;
-            position: absolute;
-            right: 50%;
-            bottom: 40%;
-        }
-
-        #Reset {
-            width: 50px;
-            position: absolute;
-            right: 44%;
-            bottom: 40%;
-        }
-
-        @media (min-width: 768px) {
-            form {
-                max-width: 600px;
-            }
-        }
-
-        @media (min-width: 992px) {
-            form {
-                max-width: 800px;
-            }
-        }
-
         #Submit,
         #Reset {
-            box-sizing: border-box;
-            background: #eb94d0;
-            background-image: -webkit-linear-gradient(top, #eb94d0, #2079b0);
-            background-image: -moz-linear-gradient(top, #eb94d0, #2079b0);
-            background-image: -ms-linear-gradient(top, #eb94d0, #2079b0);
-            background-image: -o-linear-gradient(top, #eb94d0, #2079b0);
-            background-image: linear-gradient(to bottom, #eb94d0, #2079b0);
-            border-radius: 5px;
-        }
-
-        #Submit:hover,
-        #Reset:hover {
-            background: #2079b0;
-            background-image: -webkit-linear-gradient(top, #2079b0, #eb94d0);
-            background-image: -moz-linear-gradient(top, #2079b0, #eb94d0);
-            background-image: -ms-linear-gradient(top, #2079b0, #eb94d0);
-            background-image: -o-linear-gradient(top, #2079b0, #eb94d0);
-            background-image: linear-gradient(to bottom, #2079b0, #eb94d0);
-            text-decoration: none;
-        }
-        #account:focus,
-        #password:focus,
-        #password_check:focus{
-            background-color: #59f248; 
-            outline: none; 
+            width: 100%; /* Make the buttons take full width */
+            margin-top: 20px; /* Add some spacing between buttons and inputs */
         }
     </style>
     <script>
@@ -162,16 +61,27 @@
 <body>
     <div id="container">
         <form name="registerForm" method="post" action="register.php" onsubmit="return validateForm()">
-            <div id="registeraccount">註冊帳號</div>
-            <div id="Account">帳號:</div>
-            <input type="text" name="username" id="account"><br/><br/>
-            <div id="Password">密碼:</div>
-            <input type="password" name="password" id="password"><br/><br/>
-            <div id="checkpassword">確認密碼</div>
-            <input type="password" name="password_check" id="password_check"><br/><br/>
-            <input type="submit" value="註冊" name="submit" id="Submit">
-            <input type="reset" value="重設" name="submit" id="Reset">
+            <div id="registeraccount" class="mb-4">註冊帳號</div>
+            <div class="form-group">
+                <label for="account">帳號:</label>
+                <input type="text" name="username" id="account" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">密碼:</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password_check">確認密碼</label>
+                <input type="password" name="password_check" id="password_check" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" id="Submit">註冊</button>
+            <button type="reset" class="btn btn-secondary" id="Reset">重設</button>
         </form>
     </div>
+
+    <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
