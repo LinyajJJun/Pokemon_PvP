@@ -1,37 +1,87 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>會員註冊</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/earlyaccess/cwtexfangsong.css">
+    <style>
+        body {
+            font-family: "cwTeXFangSong";
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #dcf4ae; /* 设置整体背景颜色 */
+        }
+
+        #container {
+            width: 500px;
+            height: 500px;
+            background-color: #68acf5; /* 设置容器背景颜色 */
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        form {
+            max-width: 400px;
+            width: 100%;
+        }
+
+        #registeraccount {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #Submit,
+        #Reset {
+            width: 100%; /* Make the buttons take full width */
+            margin-top: 20px; /* Add some spacing between buttons and inputs */
+        }
+    </style>
     <script>
-        
         function validateForm() {
             var x = document.forms["registerForm"]["password"].value;
             var y = document.forms["registerForm"]["password_check"].value;
-            if(x.length<6){
+            if(x.length < 6){
                 alert("密碼長度不足");
                 return false;
             }
-            if (x != y) {
+            if (x !== y) {
                 alert("請確認密碼是否輸入正確");
                 return false;
             }
         }
     </script>
-    
-    </head>
+    <title>會員註冊</title>
+</head>
 <body>
-    <h1>註冊頁面</h1>
-<form name="registerForm" method="post" action="register.php" onsubmit="return validateForm()">
-帳  號：
-    <input type="text" name="username"><br/><br/>
-密  碼：
-<input type="password" name="password" id="password"><br/><br/>
-確認密碼：
-    <input type="password" name="password_check" id="password_check"><br/><br/>
-<input type="submit" value="註冊" name="submit">
-<input type="reset" value="重設" name="submit">
-</form>
+    <div id="container">
+        <form name="registerForm" method="post" action="register.php" onsubmit="return validateForm()">
+            <div id="registeraccount" class="mb-4">註冊帳號</div>
+            <div class="form-group">
+                <label for="account">帳號:</label>
+                <input type="text" name="username" id="account" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password">密碼:</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="password_check">確認密碼</label>
+                <input type="password" name="password_check" id="password_check" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary" id="Submit">註冊</button>
+            <button type="reset" class="btn btn-secondary" id="Reset">重設</button>
+        </form>
+    </div>
 
-
+    <!-- Bootstrap JS and Popper.js scripts (required for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
