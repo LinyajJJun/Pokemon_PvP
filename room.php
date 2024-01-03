@@ -223,7 +223,6 @@ $roomID = $_SESSION["roomID"];
                 type: "GET",
                 data: {
                     operator: "Start",
-                    roomID: "<?php echo $roomID; ?>",
                     value: "<?php echo $userID; ?>"
                 },
                 success: function (response) {
@@ -241,7 +240,6 @@ $roomID = $_SESSION["roomID"];
                 type: "GET",
                 data: {
                     operator: "LeaveRoom",
-                    roomID: "<?php echo $roomID; ?>",
                     value: "<?php echo $userID; ?>"
                 },
                 success: function (response) {
@@ -307,8 +305,7 @@ $roomID = $_SESSION["roomID"];
                 url: "room_event.php",
                 type: "GET",
                 data: {
-                    operator: "CheckRoom",
-                    roomID: "<?php echo $roomID; ?>"
+                    operator: "CheckRoom"
                 },
                 success: function (response) {
                     console.log(response);
@@ -336,8 +333,7 @@ $roomID = $_SESSION["roomID"];
                 url: "room_event.php",
                 type: "GET",
                 data: {
-                    operator: "GetPlayerInfo",
-                    roomID: "<?php echo $roomID; ?>"
+                    operator: "GetPlayerInfo"
                 },
                 success: function (response) {
                     console.log(response);
@@ -380,8 +376,7 @@ $roomID = $_SESSION["roomID"];
                 url: "room_event.php",
                 type: "GET",
                 data: {
-                    operator: "GetPlayerInfo",
-                    roomID: "<?php echo $roomID; ?>"
+                    operator: "GetPlayerInfo"
                 },
                 success: function (response) {
                     // 將 JSON 格式的字串轉換成 JavaScript 的物件
@@ -421,8 +416,7 @@ $roomID = $_SESSION["roomID"];
                 url: "room_event.php",
                 type: "GET",
                 data: {
-                    operator: "GetPlayerInfo",
-                    roomID: "<?php echo $roomID; ?>"
+                    operator: "GetPlayerInfo"
                 },
                 success: function (response) {
                     console.log(response);
@@ -453,7 +447,6 @@ $roomID = $_SESSION["roomID"];
                     type: "GET",
                     data: {
                         operator: "UpdatePlayer2Status",
-                        roomID: "<?php echo $roomID; ?>",
                         value: 0
                     },
                     success: function (response) {
@@ -474,7 +467,6 @@ $roomID = $_SESSION["roomID"];
                     type: "GET",
                     data: {
                         operator: "UpdatePlayer2Status",
-                        roomID: "<?php echo $roomID; ?>",
                         value: 1
                     },
                     success: function (response) {

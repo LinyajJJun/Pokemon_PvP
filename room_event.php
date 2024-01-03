@@ -2,7 +2,7 @@
 require_once("config.php");
 session_start();
 // $userID = $_SESSION["id"];
-$roomID = $_GET["roomID"];
+$roomID = $_SESSION["roomID"];
 $operator = $_GET["operator"];
 $v = isset($_GET["value"]) ? $_GET["value"] : NULL;
 

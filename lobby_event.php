@@ -118,4 +118,17 @@ function insertPlayer($db, $userID){
         echo "insert player fail";
     }
 }
+
+function randomJoinRoom($db, $userID){
+    $sql = "SELECT * FROM room WHERE player2ID IS NULL";
+    $stmt = $db->prepare($sql);
+    $stmt->execute();
+    if($stmt->rowCount() == 0){
+        echo "no room available";
+        return;
+    }
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+    $roomID = $row["roomID"];
+    join_room($db, $userID, $roomID);
+}
 ?>

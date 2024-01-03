@@ -143,6 +143,7 @@
                                 interval = clearInterval(interval);
                                 $("#pokemon").hide();
                                 alert("對戰開始");
+                                window.location.href = "battle.php";
                             }
                         });
                         
