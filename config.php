@@ -1,6 +1,6 @@
 <?php
 $user = 'root'; // Database username
-$password = ''; // Database password
+$password = 'asd12345678'; // Database password
 
 try {
     $db = new PDO('mysql:host=localhost;dbname=pokemon;charset=utf8', $user, $password);
