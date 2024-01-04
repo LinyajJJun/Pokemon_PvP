@@ -1,3 +1,28 @@
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+<?php
+session_start();  //很重要，可以用的變數存在session裡
+$username=$_SESSION["username"];
+$id = $_SESSION["id"];
+echo "<h1>你好 ".$username."</h1>";
+echo "<h1>你的ID是 ".$id."</h1>";
+$roomID = isset($_SESSION["roomID"]) ? $_SESSION["roomID"] : NULL;
+if($id == NULL){
+    echo "<script>alert('請先登入'); window.location.href='index.php';</script>";
+    exit;
+}
+if($roomID != NULL){
+    echo "<h1>你的房間號碼是 ".$roomID."</h1>";
+    //三秒後跳轉
+    header("Refresh:3;url=room.php");
+    exit;
+}
+
+?>
+>>>>>>> 63e47ed2f116056a5f99526454845497af9eea77
+>>>>>>> 40b67bd37c0b68ddd26dab2cead8aff9ec104084
 
 <html>
 
@@ -63,6 +88,7 @@
       background-color: #3b4af6;
     }
     .centered-text {
+<<<<<<< HEAD
           font-size: 35px;
           text-align: center;
           color: aqua;
@@ -105,6 +131,13 @@
         background-size: cover;
       }
     }
+=======
+            text-align: center;
+            color: #3b4af6; /* 藍色 */
+            margin-top: 50vh; /* 將文字置於頁面垂直中央 */
+            transform: translateY(-50%);
+      }
+>>>>>>> 40b67bd37c0b68ddd26dab2cead8aff9ec104084
   </style>
   <script>
     function redirectToChoosePage() {
@@ -147,6 +180,7 @@
 </head>
 <body>
     <?php
+<<<<<<< HEAD
       session_start();  //很重要，可以用的變數存在session裡
       $username=$_SESSION["username"];
       $id = $_SESSION["id"];
@@ -166,5 +200,26 @@
     <button id="createRoomButton1" class="btn btn-info" onclick="createRoomButton()" >Create Room</button>
     <button id="createRoomButton2" class="btn btn-info" onclick="joinRoomButton()">Join Room</button>
     <button id="logoutButton" class="btn btn-danger" onclick="redirectToindexPage()" >登出</button>
+=======
+        session_start();  //很重要，可以用的變數存在session裡
+        $username=$_SESSION["username"];
+        $id = $_SESSION["id"];
+        echo "<h1 class="centered-text">你好 ".$username."</h1>";
+        echo "<h1 class="centered-text">你的ID是 ".$id."</h1>";
+        $roomID = $_SESSION["roomID"];
+        if($id == NULL){
+            echo "<script>alert('請先登入'); window.location.href='index.php';</script>";
+        }
+        if($roomID != NULL){
+            echo "<h1>你的房間號碼是 ".$roomID."</h1>";
+            //三秒後跳轉
+            header("Refresh:3;url=room.php");
+        }
+    ?>
+    <button id="loginButton" onclick="redirectToChoosePage()">Enter</button>
+    <button id="createRoomButton" onclick="createRoomButton()">Create Room</button>
+    <button id="createRoomButton" onclick="joinRoomButton()">Join Room</button>
+    <button id="logoutButton" onclick="redirectToindexPage()">登出</button>
+>>>>>>> 40b67bd37c0b68ddd26dab2cead8aff9ec104084
 </body>
 </html>
